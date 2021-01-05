@@ -14,6 +14,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "pub": "yarn build & npm publish",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name wlForm src/packages/install.ts",
     "build-prod": "webpack --config build/webpack.prod.js --progress --hide-modules "
