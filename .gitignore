@@ -2,6 +2,7 @@
 node_modules
 dist_electron
 mochawesome-report
+dist
 
 # local env files
 .env.local
