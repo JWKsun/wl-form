@@ -12,7 +12,7 @@ import {
   Checkbox
 } from "ant-design-vue";
 import { ScopedSlotChildren } from "vue/types/vnode";
-import { ActionController } from "aftool";
+import { Debounce } from "aftool";
 import { FormItemType, FormStatusType } from "../types/wf-types";
 
 const NodeMap: { [key: string]: any } = {
@@ -46,9 +46,7 @@ export default class WFormItem extends Vue implements wform.FormItemMethods {
   readonly renderItem?: wform.RenderItemFunc;
   @Inject("rootComp") private rootComp!: any;
   @Inject("setFormData") private setFormData!: (obj?: { [key: string]: any }) => void;
-  private validateDebounce = new ActionController({
-    debounceAction: this.onValidate
-  });
+  private validateDebounce = new Debounce();
   //这边属性如果不付值的话将不会被注入vue的data中 大坑 而且不能赋值为undefined
   private currentDefaultValue: any = null;
   private currentControlValue: any = null;
@@ -245,7 +243,7 @@ export default class WFormItem extends Vue implements wform.FormItemMethods {
   setDebounceValue(value: any): void {
     this.setFormData({ [this.config.key || "unknown"]: value });
     this.currentValue = this.getFormDataValue();
-    this.validateDebounce.debounce();
+    this.validateDebounce.go(this.onValidate);
   }
   setStatusMessage(obj: wform.StatusMessage, permanent?: boolean) {
     this.isShowStatus = true;

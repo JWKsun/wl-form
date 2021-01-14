@@ -1,6 +1,6 @@
 {
   "name": "wl-form",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "private": false,
   "main": "dist/wlForm.umd.min.js",
   "typings": "types/index.d.ts",
@@ -20,7 +20,7 @@
     "build-prod": "webpack --config build/webpack.prod.js --progress --hide-modules "
   },
   "dependencies": {
-    "aftool": "^2.0.0",
+    "aftool": "^1.3.0",
     "ant-design-vue": "^1.5.3",
     "core-js": "^3.8.2",
     "moment": "^2.29.1",
